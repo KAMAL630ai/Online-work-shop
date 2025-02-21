@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Workshop</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s ease;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        /* Home Page Styles */
+        #home {
+            background-color: #e3f2fd;
+        }
+
+        /* Tools Page Styles */
+        #tools {
+            background-color: #bbdefb;
+        }
+
+        .tool-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .tool-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 30%;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.05);
+        }
+
+        .tool-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .tool-card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .tool-card p {
+            color: #666;
+        }
+
+        /* Tool 1: Photo Copy */
+        #photo-copy {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #photo-copy input[type="file"] {
+            display: none;
+        }
+
+        #photo-copy label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #photo-copy label:hover {
+            background-color: #555;
+        }
+
+        #photo-copy-preview {
+            margin-top: 20px;
+        }
+
+        #photo-copy-preview img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        /* Tool 2: Passport Size Photo */
+        #passport-photo {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #passport-photo input[type="file"] {
+            display: none;
+        }
+
+        #passport-photo label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #passport-photo label:hover {
+            background-color: #555;
+        }
+
+        #passport-preview {
+            margin-top: 20px;
+        }
+
+        #passport-preview img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        /* Tool 3: Form Filling */
+        #form-filling {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #form-filling form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #form-filling input, #form-filling textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #form-filling button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #form-filling button:hover {
+            background-color: #555;
+        }
+
+        /* About Page Styles */
+        #about {
+            background-color: #64b5f6;
+        }
+
+        /* Contact Page Styles */
+        #contact {
+            background-color: #42a5f5;
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #contact input, #contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #contact button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #contact button:hover {
+            background-color: #555;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Workshop</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to our online workshop! Explore our tools and services.</p>
+    </section>
+
+    <!-- Tools Page -->
+    <section id="tools">
+        <h2>Our Tools</h2>
+        <div class="tool-container">
+            <!-- Tool 1: Photo Copy -->
+            <div class="tool-card" onclick="showTool('photo-copy')">
+                <img src="images/tool1.png" alt="Tool 1">
+                <h3>Photo Copy</h3>
+                <p>Upload and copy a photo.</p>
+            </div>
+
+            <!-- Tool 2: Passport Size Photo -->
+            <div class="tool-card" onclick="showTool('passport-photo')">
+                <img src="images/tool2.png" alt="Tool 2">
+                <h3>Passport Photo</h3>
+                <p>Crop a photo to passport size.</p>
+            </div>
+
+            <!-- Tool 3: Form Filling -->
+            <div class="tool-card" onclick="showTool('form-filling')">
+                <img src="images/tool3.png" alt="Tool 3">
+                <h3>Form Filling</h3>
+                <p>Fill out a form with your details.</p>
+            </div>
+        </div>
+
+        <!-- Tool 1: Photo Copy -->
+        <div id="photo-copy">
+            <h3>Photo Copy Tool</h3>
+            <label for="photo-copy-upload">Upload Photo</label>
+            <input type="file" id="photo-copy-upload" accept="image/*">
+            <div id="photo-copy-preview">
+                <img src="#" alt="Preview" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Tool 2: Passport Size Photo -->
+        <div id="passport-photo">
+            <h3>Passport Photo Tool</h3>
+            <label for="passport-upload">Upload Photo</label>
+            <input type="file" id="passport-upload" accept="image/*">
+            <div id="passport-preview">
+                <img src="#" alt="Preview" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Tool 3: Form Filling -->
+        <div id="form-filling">
+            <h3>Form Filling Tool</h3>
+            <form id="form-filling-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea placeholder="Additional Instructions (optional)"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a team of experts dedicated to helping you learn and grow.</p>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Online Workshop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to Show Selected Tool
+        function showTool(toolId) {
+            // Hide all tools
+            document.getElementById('photo-copy').style.display = 'none';
+            document.getElementById('passport-photo').style.display = 'none';
+            document.getElementById('form-filling').style.display = 'none';
+
+            // Show the selected tool
+            document.getElementById(toolId).style.display = 'block';
+
+            // Change background color to blue
+            document.body.style.backgroundColor = '#bbdefb';
+        }
+
+        // JavaScript for Photo Upload and Preview (Tool 1)
+        const photoCopyUpload = document.getElementById('photo-copy-upload');
+        const photoCopyPreview = document.getElementById('photo-copy-preview').querySelector('img');
+
+        photoCopyUpload.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    photoCopyPreview.src = e.target.result;
+                    photoCopyPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // JavaScript for Passport Photo Upload and Preview (Tool 2)
+        const passportUpload = document.getElementById('passport-upload');
+        const passportPreview = document.getElementById('passport-preview').querySelector('img');
+
+        passportUpload.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    passportPreview.src = e.target.result;
+                    passportPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // JavaScript for Form Submission (Tool 3)
+        document.getElementById('form-filling-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you! Your form has been submitted successfully.');
+        });
+
+        // JavaScript for Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for contacting us! We will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
